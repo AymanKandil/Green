@@ -1,0 +1,38 @@
+{% extends "nav.html" %} {% set nav = [ { "name": "ManageUser", "href": "/ManageUser", "access_roles": [1] }, { "name": "Ayman", "href": "/ManageUser", "access_roles": [1] }] %} {% block imports %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style_dash.css') }}">
+<script src="{{ url_for('static', filename='Dashboard_main.js') }}"></script>
+{% endblock%} {% block title %}
+<title>Dashboard</title>
+{% endblock %} {% block content %}
+<div class="sidenav">
+    {% for item in nav %} {% if current_user.allowed(item.access_roles) %}
+    <a href="{{ item.href }}">{{ item.name }}</a>
+    <hr> {% endif %} {% endfor %}
+</div>
+<nav role="navigation">
+    <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+        <ul id="menu">
+            {% for item in nav %} {% if current_user.allowed(item.access_roles) %}
+            <a href="{{ item.href }}">
+                <li>{{ item.name }}</li>
+            </a>
+            <hr> {% endif %} {% endfor %}
+        </ul>
+    </div>
+</nav>
+{% block dashboard_content %}
+<div class="centre-content">
+    <h2>Hello, {{current_user.username}}.</h2>
+    <div class="links-parent">
+        {% for item in nav %} {% if current_user.allowed(item.access_roles) %}
+        <a href="{{ item.href }}">
+            <div class="links">{{ item.name }}</div>
+        </a>
+        {% endif %} {% endfor %}
+    </div>
+</div>
+{% endblock %} {% endblock %}

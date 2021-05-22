@@ -1,0 +1,20 @@
+{% extends "nav.html" %} {% block title %}
+<title>Register | Dashboard</title>
+{% endblock %} {% block imports %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth_style.css') }}"> {% endblock%} {% block content %}
+<h1>Register</h1>
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for message in messages %}
+<div class="{{ message[0] }}">
+    {{ message[1] }}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<form method="POST" action="/register" class="login-form">
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="Password" />
+    <input type="password" name="confirm_password" placeholder="Confirm Password" />
+    <label for="token">Invite code</label>
+    <input type="text" name="token" placeholder="Invite code" value="{{ token }}" />
+    <button>Register</button>
+</form>
+{% endblock %}
