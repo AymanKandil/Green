@@ -1,0 +1,87 @@
+{% extends "dashboard.html" %} {% block title %}
+<title>Manage users | Dashboard</title>
+{% endblock %} {% block dashboard_content %}
+<div class="centre-content">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+    <div class="{{ messages[0][0] }}">
+        {{ messages[0][1] }}
+    </div>
+    {% endif %} {% endwith %}
+    <h2>Manage roles</h2>
+    <div class="incidents-form">
+        Roles {% for role in roles %}
+        <span class="role" style="background-color: #{{ role[3] }};">
+                {{ role[1] }}
+            </span> {% endfor %}
+
+        <form method="POST" action="/dashboard/user/role/add">
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="" />
+            <button id="incident-button">Add role</button>
+        </form>
+    </div>
+
+    <h2>Manage users</h2>
+    <div class="incidents-form button-table-parent">
+        <table class="button-table">
+            {% for user in users.keys() %}
+            <tr>
+                <td>
+                    <form method="POST" action="/dashboard/" onclick="return confirm('Are you sure you want to delete this user?');">
+                        <button class="button-table-icon" formaction="/ManageUser/{{ users[user].name }}/remove"> - </button>
+                    </form>
+                    {{ users[user].name }}
+                </td>
+                <td class="role-col">
+
+                    <span class="role" style="background-color: #{{users[user].role[3]}};">{{ users[user].role[1] }}</span>
+
+                </td>
+                <td>
+                    <form method="POST" action="/dashboard/">
+                        <select name="roles" id="roles-select">
+                                {% for role in roles %}
+                                    <option value="{{ role[1] }}">{{ role[1] }}</option>
+                                {% endfor %}
+                            </select>
+                        <button class="button-table-icon" formaction="/ManageUser/role/{{ users[user].name }}/add"> + </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<style>
+    .role {
+        background-color: #f0ffff;
+        color: var(--background-color);
+        padding: .2rem;
+        border-radius: 10px;
+        text-align: center;
+        margin: 1px;
+        font-size: .8rem;
+    }
+    
+    .role-col {
+        text-align: center;
+    }
+    
+    tr {
+        border: solid;
+        border-width: 1px 0;
+    }
+    
+    td {
+        padding: .5rem;
+    }
+    
+    table td {
+        border-left: 1px solid;
+    }
+    
+    table td:first-child {
+        border-left: none;
+    }
+</style>
+{% endblock %}

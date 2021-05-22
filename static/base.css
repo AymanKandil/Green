@@ -1,0 +1,77 @@
+:root {
+  --form-bg: #23272A;
+  --form-border: #72dac9;
+  --form-highlight: #72dac9;
+  --font-color: #FFF;
+  --background-color: #2C2F33;
+}
+
+body {
+  color: var(--font-color);
+}
+
+input, textarea, select {
+  color: var(--font-color);
+}
+
+/* Navigation bar */
+.topnav {
+  background-color: var(--form-bg);
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--form-border);
+}
+
+.topnav a {
+  float: left;
+  color: var(--font-color);
+  text-align: center;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  /* background-color: var(--form-border); */
+  transition: .2s all ease-in-out;
+}
+
+.topnav a:hover {
+  background-color: var(--form-highlight);
+  color: black;
+}
+
+.success {
+	background: #72da78;
+	padding: .25rem 2.5rem;
+	color: #222;
+}
+
+.error {
+	background: #da7272;
+	padding: .25rem 2.5rem;
+	color: #222;
+}
+
+/* Button Table */
+.button-table-parent {
+  padding: 1rem !important;
+}
+.button-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.button-table-icon {
+  padding: .25rem;
+  line-height: normal;
+  min-width: 1.5rem;
+  margin: 0rem .25rem;
+  letter-spacing: normal;
+}
+.button-table-icon a {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+}
+.row-hover:hover, .row-hover:active {
+  background-color:rgba(255, 255, 255, .1);
+  transition: all .2s ease-out;
+}

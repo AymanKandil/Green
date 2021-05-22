@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    {% block imports %} {% endblock %}
+    {% block title %} <title>Document</title> {% endblock %}
+</head>
+<body>
+    <div class="topnav">
+        {% if current_user.is_authenticated %}
+            <a class="nav-item" href="{{ url_for('dashboard.dashboard_view') }}">Dasbhoard</a>
+            <a class="nav-item" href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+        <a class="nav-item" href="{{ url_for('auth.login') }}">Login</a>
+        {% endif %}
+    </div> 
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

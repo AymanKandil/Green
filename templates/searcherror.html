@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Green: The ultimate farmers hub</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{url_for('static', filename='logo3.png')}}"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<div class="dropdown show">
+						<a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-search"></i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<div class="dropdown-item input-group">
+								<div class="form-outline">
+								  <input type="search" id="form1" class="form-control" />
+								  <label class="form-label" for="form1">Search</label>
+								</div>
+								<button type="button" class="btn btn-secondary">
+								  <i class="fas fa-search"></i>
+								</button>
+							  </div>
+						</div>
+					  </div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('index') }}">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('farms.all_farms_view')}}">Farms Catalogue</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('products.all_products_view') }}">Farms Products</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('auth.register_post') }}">Register/Sign-In</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('farmportal') }}">Farmer's Portal</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('usefullinks') }}">Useful Links</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Contact Us</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('aboutus') }}">About Us</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+	
+
+<!--- Who are we? -->
+<div class="container-fluid padding">
+	<p>Search error</p>
+</div>
+
+<!--- Footer -->
+<footer>
+	<div class="container-fluid padding">
+	<div class="row text-center">
+		<div class="col-md-4">
+			<img src="{{url_for('static', filename='grey.png')}}" width="60" height="58">
+			<hr class="light">
+			<a href="{{ url_for('farmer.farmer_view') }}"><p>User Profile</p></a>
+			<a href="{{ url_for('farms.all_farms_view')}}"><p>Farms</p></a>
+			<P>Products</P>
+		</div>
+		<div class="col-md-4">
+			<hr class="light">
+			<h5>Social Media</h5>
+			<hr class="light">
+			<p>Facebook page</p>
+			<p>Instagram</p>
+			<p>Twitter</p>
+		</div>
+		<div class="col-md-4">
+			<hr class="light">
+			<h5>Company</h5>
+			<hr class="light">
+			<a href= "{{ url_for('aboutus') }}"><p>About Us</p></a>
+			<p>Contact Us</p>
+		</div>
+		<div class="col-12">
+			<hr class="light-100">
+			<h5>&copy; Green.com</h5>
+		</div>
+	</div>
+	</div>
+	</footer>
+    
+    
+    </body>
+    </html>
+    
+    
+    
+    
+    
