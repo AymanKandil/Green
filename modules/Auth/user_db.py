@@ -43,8 +43,7 @@ class UserDatabase():
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS Products (
                 product_id INTEGER PRIMARY KEY,
-                name VARCHAR(50) UNIQUE,
-                description VARCHAT(500)
+                name VARCHAR(50) UNIQUE
             )
         """)
 
