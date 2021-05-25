@@ -2,7 +2,7 @@
   <img  width="400" height="400" src="static/logo3.png" align="center">
 </p>
 
-# GREEN: Where Farms comes online
+# GREEN: Where Farms come online
 <hr>
 
 GREEN is a website that allow the farms in Kuwait to be available online which is something that is in need during such pandemic such as COVID-19. The website is built with simple and stright forward User Interface that allows the user to navigate and access the material easily. In addition Green allows the farmers to organizer and monitor their own farms by providing a farmers portal. The Farmers portal allows the farmer to add his farms and his products for each farm as well as managing each farm produce. For visitors, GREEN allows them to browse different farms and produces to allow them to later visit that farm or buy products from a specific farm.
