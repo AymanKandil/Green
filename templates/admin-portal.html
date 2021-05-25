@@ -69,64 +69,69 @@
 </div>
 </nav>
 
-  
-
-
-<!--Filter + Produce-->
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-sm">
-        <div class="card" id="search-filter">
-          <div class="card-header">
-            Filter search
-          </div>
-          <div class="filter-item">
-            <h6>Products</h6>
-            <ul class="filter-list">
-              <li>
-                <input class="form-check-input" type="checkbox" value="" id="item-check1">
-                <label class="form-check-label" for="item-check1">
-                  Strawberry
-                </label>   
-              </li>
-              <li>
-                <input class="form-check-input" type="checkbox" value="" id="item-check2">
-                <label class="form-check-label" for="item-check2">
-                  Blueberry
-                </label> 
-              </li>
-              <li>
-                <input class="form-check-input" type="checkbox" value="" id="item-check3">
-                <label class="form-check-label" for="item-check3">
-                  Mango
-                </label>   
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-8">
-        <div class="card" id="search-items-holder">
-          <div class="card-header">
-            Our farms
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-1">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ url_for('download_file', filename='farm-'+farm[0]|string+'.jpeg') }}" alt="Strawberries">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ farm[1]}}</h5>
-                      <a href="/farms/{{ farm[0] }}" type="button" class="btn btn-outline-secondary btn-lg">View Item</a>
-                    </div>
-                  </div>
-                </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<!--Admin Title-->
+<div class="team container-fluid padding">
+	<div class="row text-center">
+		<div class="col-12">
+			
+			<h1 class="display-4">Admin Portal</h1>
+            <p class="lead">Available Roles:</p>
+			
+            <h4 class=>{% for role in roles %}<span class="role-admin">{{ role[1]}}</span>  {% endfor %}</h4>
+			
+		</div>
+	<hr>
 </div>
+</div>
+
+<!--Users Table-->
+<div class="tables">
+
+	<h2>Users</h2>
+	<p class="hint-text text-center">Manage User Roles</p>
+	<table class="table-secondary col-6 offset-3">
+		<thead>
+		  <tr>
+			<th>User</th>
+			<th>Role</th>
+			<th>Edit/Add Roles</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for user in users.keys() %}
+		  <tr class="table-light">
+			<td>{{ users[user].name }}</td>
+			<td><span class="role-farm" style="border-radius: 15px;
+				background: #{{users[user].role[3]}};
+				padding: 10px;">{{ users[user].role[1] }}</span></span></td>
+			<td><div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Role</label>
+                </div>
+			<form method="POST" action="/dashboard/">
+                <select class="custom-select" name="roles" id="roles-select">
+                  <option selected>Choose...</option>
+				  {% for role in roles %}
+                  <option value="{{ role[1] }}">{{ role[1] }}</option>
+				  {% endfor %}
+                </select>
+              </div>
+			 
+                <button formaction="/ManageUser/{{ users[user].name }}/remove" onclick="return confirm('Are you sure you want to delete this user?');" class="btn btn-outline-danger">Delete User</button>
+			
+				<button formaction="/ManageUser/role/{{ users[user].name }}/add" class="btn btn-outline-success float-left"> Change Role</button>
+			</form>
+            </td>
+			{% endfor %}
+		</tr>
+
+        
+		</tbody>
+
+	  </table>
+	
+</div>
+
 
 <!--- Footer -->
 <footer>
@@ -161,6 +166,10 @@
 	</div>
 	</div>
 	</footer>
+
+
+    
+    
     
     </body>
     </html>

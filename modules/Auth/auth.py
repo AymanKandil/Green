@@ -17,7 +17,7 @@ auth = Blueprint(
 @auth.route("/login")
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("dashboard.dashboard_view"))
+        return redirect(url_for("farmer.farmer_view"))
     return render_template("login.html")
 
 @auth.route("/login", methods=["POST"])

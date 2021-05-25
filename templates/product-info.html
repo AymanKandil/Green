@@ -1,3 +1,5 @@
+{% set nav = [ { "name": "Home", "href": "/", "access_roles": [1, 2, 3] }, { "name": "Home", "href": "/", "access_roles": [2] }, { "name": "Home", "href": "/", "access_roles": [3] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [1] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [2] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [3] }, { "name": "Farms Products", "href": "/products", "access_roles": [1] }, { "name": "Farms Products", "href": "/products", "access_roles": [2] }, { "name": "Farms Products", "href": "/products", "access_roles": [3] },  { "name": "Register/Sign-In", "href": "/register", "access_roles": [3] }, { "name": "Farmer's Portal", "href": "/farmportal", "access_roles": [2] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [1] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [2] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [3] }, { "name": "User Profile", "href": "/userprofile", "access_roles": [1] }, { "name": "User Profile", "href": "/userprofile", "access_roles": [2] }, { "name": "About Us", "href": "/aboutus", "access_roles": [1] }, { "name": "About Us", "href": "/aboutus", "access_roles": [2] }, { "name": "About Us", "href": "/aboutus", "access_roles": [3] }, { "name": "Admin Portal", "href": "/ManageUser", "access_roles": [1] }] %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +11,16 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
 
 <!-- Navigation -->
+
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 <div class="container-fluid">
-	<a class="navbar-brand" href="index.html"><img src="img/logo3.png"></a>
+	<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{url_for('static', filename='logo3.png')}}"></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -51,29 +54,21 @@
 <div class="{{ message[0] }}">
     {{ message[1] }}
 </div>
-{% endfor %} {% endif %} {% endwith %}
-			<li class="nav-item">
-				<a class="nav-link" href="index.html">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="about.html">About Us</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="catalogue.html">Catalogue</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="products.html">Items</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="farm-portal.html">Farm Owners</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="useful-links.html">Useful Links</a>
-			</li>
 		</ul>
+{% endfor %} {% endif %} {% endwith %}
+		<ul class="navbar-nav ml-auto">
+			{% for item in nav %} {% if current_user.allowed(item.access_roles) %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{item.href}}">{{item.name}}</a>
+			</li>
+			{% endif %} {% endfor %}
+		</ul>
+		
 	</div>
+	
 </div>
 </nav>
+
 
 <!--Product info-->
 <div class="farm container-fluid padding">

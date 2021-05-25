@@ -484,7 +484,23 @@ class UserDatabase():
             self.cursor.execute(sql, (fid,))
             self.__connection.commit()
 
-   
+    def update_farm(self, name, description, fid):
+            sql = """
+                UPDATE farms
+                SET name = ?, description = ?
+                WHERE farm_ID =? 
+            """
+            self.cursor.execute(sql, (name, description, fid ))
+            self.__connection.commit()
+            
+    def update_productperfarm(self, name, fid):
+            sql = """
+                UPDATE productPerFarm
+                SET farmName = ?
+                WHERE farmID =? 
+            """
+            self.cursor.execute(sql, (name, fid ))
+            self.__connection.commit()
     
 
     

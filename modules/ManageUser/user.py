@@ -35,7 +35,7 @@ def user_view():
         # else:
         #     current_user["roles"].append([user[6], user[7], user[8]])
         users_sorted[user[1]] = current_user
-    return render_template("user.html", roles=roles, users=users_sorted)
+    return render_template("admin-portal.html", roles=roles, users=users_sorted)
 
 @user.route("/role/add", methods=["POST"])
 @login_required

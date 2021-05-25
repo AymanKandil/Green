@@ -52,11 +52,12 @@ def farmfilter():
             productname2.append(productname[count][0])
             count += 1
     farmid=[]
+    print(productname2[0][0])
     count2=0;
     for y in productname2:
-        farmid.append(db.select_farmidbyproductid([count2][0])) 
+        farmid.append(db.select_farmidbyproductid(productname2[count2][0])) 
         count2+=1
-    print(farmid)
+    
 
     finalfarmid=[] 
     for x in farmid:

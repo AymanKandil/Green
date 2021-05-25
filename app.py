@@ -6,7 +6,7 @@ import os
 from modules.Auth.auth import auth, UserDatabase
 from modules.DashboardAdmin.dashboard import dashboard
 from modules.ManageUser.user import user
-from models import User
+from models import User, Anonymous
 from modules.Farmers.farmers import farmer
 from modules.Farms.farms import farms
 from modules.Farmsportal.Farmsportal import farmportal
@@ -42,6 +42,8 @@ app.config["DEBUG"]=True
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.anonymous_user = Anonymous
+
 
 @login_manager.user_loader
 def load_user(user_id):

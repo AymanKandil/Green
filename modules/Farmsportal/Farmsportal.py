@@ -102,7 +102,6 @@ def addproduct():
     idcount = 0
     productid = db.get_productidbyname(pname)
     productid = productid[0][0]
-    print(productid)
     db.insert_productfarm(productid, fid)
     productinfo= []
     return redirect(url_for("farmportal"))
@@ -122,8 +121,23 @@ def delete():
     db.delete_userfarms(fid)
     db.delete_productPerFarm(fid)
 
+    return redirect(url_for("farmportal"))
+    
+@farmportal.route("/update", methods=['POST'])
+def update():
+    db = UserDatabase(current_app.config["USERS_DB"])
+    loggeduser2 = current_user.get_id()
+    data2 = db.get_userID(loggeduser2)
+    uid = data2[0][0]
+    farmname = request.form.get('farmname')
+    fid = db.get_farmidbyname(farmname)
+    fid = fid[0][0]
+    newname = request.form.get('nfarm-name')
+    newdesc = request.form.get('ndesc')
+    db.update_farm(newname, newdesc, fid)
+    db.update_productperfarm(newname,fid)
+
     print(farmname)
     return redirect(url_for("farmportal"))
     
-   
     
