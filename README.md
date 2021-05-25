@@ -30,8 +30,10 @@ MIT License
 This project is the property of  developers and if used somewhere else the developers must be mentioned and tagged to avoid legal problems.
 
 Developers:
--[@ayman](https://github.com/AymanKandil)
--.
+-[@Ayman](https://github.com/AymanKandil)
+-[@Mohannad](https://github.com/MohannedOdeh)
+-[@Mohammed](https://github.com/Xemonz-Mo)
+-[@Ashwaq](https://github.com/Ashwaq85)
 
 <hr>
 
