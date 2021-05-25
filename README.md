@@ -1,5 +1,5 @@
 <p align="center">
-  <img  width="400" height="400" src="app/src/main/res/drawable-hdpi/icon_far.png" align="center">
+  <img  width="400" height="400" src="Green/static/logo3.png" align="center">
 </p>
 
 # GREEN: Where Farms comes online
