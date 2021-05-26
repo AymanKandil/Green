@@ -31,7 +31,7 @@ def login_post():
             user = User(user[0])
             login_user(user)
             return redirect(url_for("index"))
-    #flash("Incorrect username or password", "error")
+    flash("Incorrect username or password", "error")
     return redirect(url_for("auth.login"))
 
 @auth.route("/register", methods=["POST", "GET"])

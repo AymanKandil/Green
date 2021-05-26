@@ -52,12 +52,7 @@
 						</form>
 				  </div>
 			</li>
-			{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for message in messages %}
-<div class="{{ message[0] }}">
-    {{ message[1] }}
-</div>
-		</ul>
-{% endfor %} {% endif %} {% endwith %}
+
 		<ul class="navbar-nav ml-auto">
 			{% for item in nav %} {% if current_user.allowed(item.access_roles) %}
 			<li class="nav-item">
@@ -73,6 +68,11 @@
 
 	
 <!--Sign in Form-->
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for message in messages %}
+<div style="text-align: center;"class="{{ message[0] }}">
+    {{ message[1] }}
+</div>
+{% endfor %} {% endif %} {% endwith %}
 <div class="signup-form">
     <form method="POST" action="/login" class="login-form">
 		<h2>Sign In</h2>
