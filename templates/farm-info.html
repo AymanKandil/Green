@@ -71,23 +71,23 @@
 </div>
 </nav>
 
-<!--Product info-->
+<!--Farm info-->
 <div class="farm container-fluid padding">
     <div class="row padding">
         <div class="col-lg-6">
-            <img src="{{ url_for('download_file', filename='product-'+product[0]|string+'.jpeg') }}" class="img-fluid">
+            <img src="{{ url_for('download_file', filename='farm-'+farm[0]|string+'.jpeg') }}" class="img-fluid">
         </div>
         <div class="col-md-12 col-lg-6">
-            <h2 id=prod-info-name>{{product[1]}}</h2>
-			
-            <p class="lead">Available in:{% for farm in farms %} <span id="prod-info-farms"><a href="/farms/{{ farm[2] }}" class="btn btn-primary">{{ farm[1] }}</a></span></p>
+            <h2 id=farm-info-name>{{ farm [1]}}</h2>
+            <p class="lead">Description: <span id="farm-info-address">{{farm[2]}}</span></p>
+			<h5>Has:</h5>
+			{% for farm in product %}
+			  <a href="/products/{{ farm[2] }}" class="btn btn-primary">{{ farm[1] }}</a>
 			{% endfor %}
-
         </div>
        
     </div>
 </div>
-
 
 <!--- Footer -->
 <footer>
@@ -122,7 +122,6 @@
 	</div>
 	</div>
 	</footer>
-
     
     
     </body>

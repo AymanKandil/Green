@@ -23,7 +23,7 @@ def product_view(product_id):
     product_data = db.select_product(product_id)
     farm_data = db.select_product_farm(product_id)
     if product_data:
-        return render_template("product.html", product=product_data, farms=farm_data)
+        return render_template("product-info.html", product=product_data, farms=farm_data)
 
 @products.route('/filter', methods=['POST'])
 def product_filter(): 

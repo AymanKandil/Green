@@ -22,7 +22,7 @@ def product_view(farm_id):
     farm_data = db.select_farm(farm_id)
     product_data = db.select_farm_product(farm_id)
     if farm_data:
-        return render_template("farm.html", farm=farm_data, product=product_data)
+        return render_template("farm-info.html", farm=farm_data, product=product_data)
 
 
 @farms.route("/search", methods=['POST'])
