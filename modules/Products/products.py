@@ -14,14 +14,14 @@ products = Blueprint(
 @products.route('/')
 def all_products_view():
     db = UserDatabase(current_app.config["USERS_DB"])
-    product_data = db.select_products()
+    product_data = db.select_products()                             #Select query in database that retrieves all products
     return render_template("products.html", products=product_data)
 
 @products.route('/<product_id>')
 def product_view(product_id):
     db = UserDatabase(current_app.config["USERS_DB"])
-    product_data = db.select_product(product_id)
-    farm_data = db.select_product_farm(product_id)
+    product_data = db.select_product(product_id)                #Takes the selected product id and retrieves product information
+    farm_data = db.select_product_farm(product_id)              #Finds all farms that sell the selected product
     if product_data:
         return render_template("product-info.html", product=product_data, farms=farm_data)
 
@@ -34,7 +34,7 @@ def product_filter():
     print(product_array)
     product_info = []
     for x in product_array:
-        product_info.append(db.select_productsfilter(x))
+        product_info.append(db.select_productsfilter(x))            #Filter that takes all selected productname and retrieves info to display
 
     print(product_info)
     print(product_info[0][0])

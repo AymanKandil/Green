@@ -13,17 +13,17 @@ farmer = Blueprint(
 
 @farmer.route("/")
 @login_required
-def farmer_view():
+def farmer_view():                                          #userprofile view
     db = UserDatabase(current_app.config["USERS_DB"])
-    loggeduser = current_user.get_id()
-    data = db.get_logged_farmer(loggeduser)
+    loggeduser = current_user.get_id()  
+    data = db.get_logged_farmer(loggeduser)                 #Retrieves current logged user information from the database
     chars = []
-    for i in data:
+    for i in data:                                          #Using a nested for loop to assign the retrieved data into an array instead of tuble
         for c in i:
             chars.append(c)
         
-    fname = chars[1]
-    lname = chars[2]
-    fname1 = fname[0]
-    lname1 = lname[0]
+    fname = chars[1]                            #Takes the first name from array
+    lname = chars[2]                            #Takes last name from array
+    fname1 = fname[0]                           #Takes first char from firstname
+    lname1 = lname[0]                           #Takes first char from last name
     return render_template("user-profile.html", variable=data, fnamein=fname1, lnamein=lname1)
