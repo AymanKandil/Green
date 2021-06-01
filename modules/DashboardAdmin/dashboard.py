@@ -8,4 +8,4 @@ dashboard = Blueprint(
 @dashboard.route("/")
 @login_required
 def dashboard_view():
-    return render_template("dashboard.html")
+    return render_template("index.html")

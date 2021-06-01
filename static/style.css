@@ -79,7 +79,11 @@ html, body {
    color: #2163af
  }
 
- .fa-bold, .fa-code, .fa-css3 {
+ .fa-python {
+   color: #FFD700;
+ }
+
+ .fa-bold, .fa-code, .fa-css3, .fa-python {
    font-size: 4em;
    margin: 1rem; 
  }
@@ -159,6 +163,46 @@ html, body {
   border: 1px solid #abdd77;
 }
 
+.tables {
+  margin: 50px;
+}
+
+.tables h2 {
+  color: #636363;
+	margin: 0 0 15px;
+	position: relative;
+	text-align: center;
+}
+
+.tables h2:before, .tables h2:after{
+	content: "";
+	height: 2px;
+	width: 35%;
+	background: #d4d4d4;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}
+.tables h2:before {
+	left: 0;
+}
+.tables h2:after {
+	right: 0;
+}
+
+.tables button {
+  float:right;
+}
+
+.tables .form-group {
+float: left;
+}
+
+.card-img-top {
+  width: 300px;
+  height: 300px;
+}
+
 .prof-name {
   border-radius: 25%;
   width: 35px;
@@ -169,6 +213,35 @@ html, body {
   color: #666;
   text-align:center;
   font: 40px Arial, sans-serif;
+}
+
+.dropdown-menu {
+  width: 300px !important;
+}
+
+.farm img {
+  width: 500px;
+  height: 300px;
+}
+
+.role-farm {
+  border-radius: 15px;
+  background: #abdd77;
+  padding: 10px;
+}
+
+.role-admin {
+  border-radius: 15px;
+  background: #ffba00;
+  padding: 10px;
+}
+
+.farmer-opt {
+  background: #abdd77;
+}
+
+.admin-opt {
+  background: #ffba00;
 }
 
 /*---Media Queries --*/
@@ -234,21 +307,6 @@ figure {
   color: white;
 }
 
-#search-items-holder, #search-filter {
-    margin: 1rem;
-}
-#search-items {
-    display: flex;
-    flex-wrap: wrap;
-}
-.search-item {
-    margin: 0.5rem;
-    width: 18rem;
-}
-.search-item img {
-  height: 250px;
-  object-fit: cover;
-}
 
 
 

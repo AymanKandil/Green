@@ -16,12 +16,12 @@ auth = Blueprint(
 
 @auth.route("/login")
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for("dashboard.dashboard_view"))
+    if current_user.is_authenticated: ##Uses inbuilt Flask library to check if user is currently logged in and directs them to selected HTML file
+        return redirect(url_for("farmer.farmer_view"))
     return render_template("login.html")
 
-@auth.route("/login", methods=["POST"])
-def login_post():
+@auth.route("/login", methods=["POST"])                     #Login method. Takes the username and password from the form and checks it against database
+def login_post():                                           #Compares password with hashed version of password if correct will login user if not will flash and error message
     username = request.form.get("username")
     password = request.form.get("password")
     db = UserDatabase(current_app.config["USERS_DB"])
@@ -31,11 +31,11 @@ def login_post():
             user = User(user[0])
             login_user(user)
             return redirect(url_for("index"))
-    #flash("Incorrect username or password", "error")
+    flash("Incorrect username or password", "error")
     return redirect(url_for("auth.login"))
 
-@auth.route("/register", methods=["POST", "GET"])
-def register_post():
+@auth.route("/register", methods=["POST", "GET"])                       #Register method takes inputed values from form and inserts them to the database
+def register_post():                                                    #Passwords hashed before entering database
     if request.method == "GET":
         return render_template("register.html")
 
@@ -50,37 +50,37 @@ def register_post():
 
 
     # Validate username
-    if not re.match("^[a-zA-z0-9]{2,10}$", username):
+    if not re.match("^[a-zA-z0-9]{2,10}$", username):                   #Checks username in database and makes sure it fits the critera set.
         flash("Inavlid username.", "error")
         return redirect(url_for("auth.register_view"))
 
     # Valid password
-    if not (password_check(password).get("password_ok", False)):
-        flash("Your password is not strong enough, make sure it meets"
-              "the following requirements:", "error")
-        flash("8 or more characters", "error")
-        flash("1 or more lowercase letters", "error")
-        flash("1 or more uppercase letters", "error")
-        flash("1 or more special characters", "error")
-        flash("1 or more digits", "error")
+    if not (password_check(password).get("password_ok", False)):                    #Checks password and makes sure it meets conditions
+        # flash("Your password is not strong enough, make sure it meets"
+        #       "the following requirements:", "error")
+        # flash("8 or more characters", "error")
+        # flash("1 or more lowercase letters", "error")
+        # flash("1 or more uppercase letters", "error")
+        # flash("1 or more special characters", "error")
+        # flash("1 or more digits", "error")
         return redirect(url_for("auth.register_post"))
-    if confirm_password != password:
-        flash("Passwords do not match", "error")
+    if confirm_password != password:                                            #Checks password matches confirm password
+        # flash("Passwords do not match", "error")
         return redirect(url_for("auth.register_post"))
 
     user = db.check_user(username)
 
     # Check if user exists
-    if user:
-        flash("Username already taken", "error")
+    if user:                                                            #Checks if username already exists in database
+        # flash("Username already taken", "error")
         return redirect(url_for("auth.register_post"))
 
     # Register user
-    db.insert_user(username, first_name, last_name, email, generate_password_hash(password, method="sha256") )
-    flash("You were successfully registered, please log in", "success")
+    db.insert_user(username, first_name, last_name, email, generate_password_hash(password, method="sha256") )  #The command to insert user into database. Passwords are using Sha256 encryption
+    # flash("You were successfully registered, please log in", "success")
     return redirect(url_for("auth.login"))
 
-@auth.route("/logout")
+@auth.route("/logout")                          # Logout method uses Flask_login manager innate logout method
 @login_required
 def logout():
     logout_user()

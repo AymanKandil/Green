@@ -1,3 +1,5 @@
+{% set nav = [ { "name": "Home", "href": "/", "access_roles": [1, 2, 3] }, { "name": "Home", "href": "/", "access_roles": [2] }, { "name": "Home", "href": "/", "access_roles": [3] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [1] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [2] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [3] }, { "name": "Farms Products", "href": "/products", "access_roles": [1] }, { "name": "Farms Products", "href": "/products", "access_roles": [2] }, { "name": "Farms Products", "href": "/products", "access_roles": [3] },  { "name": "Register/Sign-In", "href": "/register", "access_roles": [3] }, { "name": "Farmer's Portal", "href": "/farmportal", "access_roles": [2] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [1] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [2] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [3] }, { "name": "User Profile", "href": "/userprofile", "access_roles": [1] }, { "name": "User Profile", "href": "/userprofile", "access_roles": [2] }, { "name": "About Us", "href": "/aboutus", "access_roles": [1] }, { "name": "About Us", "href": "/aboutus", "access_roles": [2] }, { "name": "About Us", "href": "/aboutus", "access_roles": [3] }, { "name": "Admin Portal", "href": "/ManageUser", "access_roles": [1] }] %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,71 +17,60 @@
 
 
 <!-- Navigation -->
+
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-<div class="container-fluid">
-	<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{url_for('static', filename='logo3.png')}}"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarResponsive">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<div class="dropdown show">
-					<a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-search"></i>
-					</a>
-					<form action="{{url_for('farms.indexsearch')}}" method="POST">
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						<div class="dropdown-item input-group">
-							<div class="form-outline">
-							  <input type="search"  name="searchtext" id="form1" class="form-control" />
-							  <label class="form-label" for="form1">Search</label>
-							</div>
-							<div><input class="form-check-input" type="checkbox" name="productsearch" value="Mango" id="item-check3">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{url_for('static', filename='logo3.png')}}"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<div class="dropdown show">
+						<a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-search"></i>
+						</a>
+						<form action="{{url_for('farms.indexsearch')}}" method="POST">
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<div class="dropdown-item input-group">
+								<div class="form-outline">
+								  <input type="search"  name="searchtext" id="form1" class="form-control" />
+								  <label class="form-label" for="form1">Search</label>
+								</div>
+								
+							  </div>
+							<div style= "text-align: center;"><input class="form-check-input" type="checkbox" name="productsearch" value="Mango" id="item-check3">
 								<label class="form-check-label" for="item-check3"> Search Products </label></div>
-							<div><input class="form-check-input" type="checkbox" name="farmsearch" value="Mango" id="item-check3">
-								<label class="form-check-label" for="item-check3"> Search Farms </label></div>
+						
+							<div style= "text-align: center;"><input class="form-check-input" type="checkbox" name="farmsearch" value="Mango2" id="item-check4">
+								<label class="form-check-label" for="item-check4"> Search Farms </label></div>
 							<button type="submit" class="btn btn-secondary">
 							  <i class="fas fa-search"></i>
 							</button>
-						  </div>
-					</div>
-					</form>
+						</div>
+						</form>
 				  </div>
 			</li>
 			{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for message in messages %}
 <div class="{{ message[0] }}">
     {{ message[1] }}
 </div>
-{% endfor %} {% endif %} {% endwith %}
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('index') }}">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('farms.all_farms_view')}}">Farms Catalogue</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('products.all_products_view') }}">Farms Products</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('auth.register_post') }}">Register/Sign-In</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('farmportal') }}">Farmer's Portal</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('usefullinks') }}">Useful Links</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Contact Us</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url_for('aboutus') }}">About Us</a>
-			</li>
 		</ul>
+{% endfor %} {% endif %} {% endwith %}
+		<ul class="navbar-nav ml-auto">
+			{% for item in nav %} {% if current_user.allowed(item.access_roles) %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{item.href}}">{{item.name}}</a>
+			</li>
+			{% endif %} {% endfor %}
+		</ul>
+		
 	</div>
+	
 </div>
 </nav>
+
 
 <!--Farms Table-->
 <div class="tables">
@@ -91,32 +82,82 @@
 			<th>Farm #</th>
 			<th>Farm Name</th>
 			<th>Description</th>
-			<th>Location</th>
 			<th>Actions</th>
 		  </tr>
 		</thead>
 		<tbody>
+		{%set count = 0 %}
 		{% for info in farminfo %}
+		{% set outer_loop = loop %}
 			{% for x in info%}
 		  <tr class="table-light">
 			<form action="{{url_for('farmportal.delete')}}" method="POST">
-			<th scope="row">1</th>
+			<th scope="row">{{ outer_loop.index }}</th>
 				<td name="test">{{ x[1]	}}</td>
 				<input type="hidden" name="farmnamefor" value="{{ x[1]}}" />
 				<td>{{	x[2]	}}</td>
-				<td>Kuwait, Salmiya, Block 00, St 00</td>
 				<td>
 					
 					<button type="submit" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
-					<button type="button" class="btn btn-outline-success"><i class="fas fa-edit"></i></button>
-					</form>
+				</form>
+				
 				</td>
+				{% set count = count + 1 %}
 				{%endfor%}
 			{% endfor %}
 		</tbody>
 	  </table>
-	  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#farmModal">+ Add Farm</button>
+	 
 </div>
+
+<div><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#farmModal">+ Add Farm</button></div>
+
+<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editModal">+ Edit Farm</button>
+
+<!--Edit Farm Modal-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title">Edit Farm</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form  action="{{url_for('farmportal.update')}}" method="POST">
+			<div class="form-group">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					  <label class="input-group-text" for="inputGroupSelect01">Farms</label>
+					</div>
+					<select name="farmname" class="custom-select" id="inputGroupSelect01">
+					  <option selected>Choose...</option>
+					  {% for farmnames in names%}
+						{% for y in farmnames %}
+					  <option value="{{y[0]}}">{{y[0]}}</option>
+							  {%endfor%}
+						{% endfor %}
+					</select>
+				  </div>
+			</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="nfarm-name" placeholder="New Farm Name" required="required">
+				</div>
+				<div class="form-group ">
+					<input type="text" class="form-control" name="ndesc" placeholder="New Description" required="required">
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-outline-danger offset-2" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-outline-success offset-3">Save changes</button>
+
+				</div>
+			</form>
+		</div>
+	  </div>
+	</div>
+  </div>
+
 
 <!--Farm Modal-->
 <div class="modal fade" id="farmModal" tabindex="-1" role="dialog">
@@ -137,9 +178,7 @@
 					<input type="text" class="form-control" name="open-days" placeholder="Description" required="required">
 				</div>
 				
-				<div class="form-group">
-					<input type="text" class="form-control" name="address" placeholder="Address" required="required">
-				</div>
+			
 				<div class="form-group">
 					<button type="button" class="btn btn-outline-danger offset-2" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-outline-success offset-3">Save changes</button>
@@ -161,7 +200,6 @@
 			<th>Item #</th>
 			<th>Item Name</th>
 			<th>Farm</th>
-			<th>Type</th>
 			<th>Boxes</th>
 			<th>Price per box</th>
 		  </tr>
@@ -170,10 +208,9 @@
 		{% for info in productinfo %}
 		
 		  <tr class="table-light">
-			<th scope="row">1</th>
+			<th scope="row">{{loop.index}}</th>
 			<td>{{info[0]}}</td>
 			<td>{{info[3]}}</td>
-			<td>Fruit</td>
 			<td>{{info[1]}}</td>
 			<td>{{info[2]}} KWD</td>
 		{%endfor%}
@@ -181,8 +218,9 @@
 		  </tr>
 		</tbody>
 	  </table>
-	  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#itemsModal">+ Add Items</button>
+	  
 </div>
+<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#itemsModal">+ Add Items</button>
 
 <!--Items Modal-->
 <div class="modal fade" id="itemsModal" tabindex="-1" role="dialog">
@@ -227,18 +265,6 @@
 					  </div>
 				</div>
 				<div class="form-group">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						  <label class="input-group-text" for="inputGroupSelect01">Type</label>
-						</div>
-						<select class="custom-select" id="inputGroupSelect01">
-						  <option selected>Choose...</option>
-						  <option value="1">Fruit</option>
-						  <option value="2">Vegetable</option>
-						</select>
-					  </div>
-				</div>
-				<div class="form-group">
 					<input type="number" class="form-control" name="boxes" placeholder="Boxes" required="required">
 				</div>
 				<div class="form-group ">
@@ -264,7 +290,7 @@
 			<hr class="light">
 			<a href="{{ url_for('farmer.farmer_view') }}"><p>User Profile</p></a>
 			<a href="{{ url_for('farms.all_farms_view')}}"><p>Farms</p></a>
-			<P>Products</P>
+			<a href="{{ url_for('products.all_products_view')}}"><P>Products</P></a>
 		</div>
 		<div class="col-md-4">
 			<hr class="light">
@@ -279,7 +305,7 @@
 			<h5>Company</h5>
 			<hr class="light">
 			<a href= "{{ url_for('aboutus') }}"><p>About Us</p></a>
-			<p>Contact Us</p>
+			<a href= "{{ url_for('usefullinks') }}"><p>Useful Links</p></a>
 		</div>
 		<div class="col-12">
 			<hr class="light-100">

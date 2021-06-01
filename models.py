@@ -1,9 +1,10 @@
 from flask import current_app, redirect, url_for
 from modules.Auth.user_db import UserDatabase
 from functools import wraps
-from flask_login import current_user
+from flask_login import current_user, AnonymousUserMixin
 
 ACCESS = {
+    'Guest': 3,
     'user': 2,
     'admin': 1
 }
@@ -56,4 +57,36 @@ class User():
 
     def __unicode__(self):
         return self.user_id
+        
+class Anonymous(AnonymousUserMixin):
+    '''
+    This is the default object for representing an anonymous user.
+    '''
+    @property
+    def is_authenticated(self):
+        return False
+
+    @property
+    def is_active(self):
+        return False
+
+    @property
+    def is_anonymous(self):
+        return True
+
+    def get_id(self):
+        return
+    
+    def __init__(self):
+        self.username = "Guest"
+        self.access= 3
+
+    def allowed(self, access_level):
+
+        if self.access == access_level[0]:
+           
+            return True
+        else:
+         
+            return False
         

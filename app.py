@@ -6,7 +6,7 @@ import os
 from modules.Auth.auth import auth, UserDatabase
 from modules.DashboardAdmin.dashboard import dashboard
 from modules.ManageUser.user import user
-from models import User
+from models import User, Anonymous
 from modules.Farmers.farmers import farmer
 from modules.Farms.farms import farms
 from modules.Farmsportal.Farmsportal import farmportal
@@ -14,9 +14,9 @@ from modules.Farmsportal.Farmsportal import farmportal
 from modules.Products.products import products
 from modules.Search.search import search
 
-# Ayman Kandil -  
-# Ashwaq Bonasi -
-# Mohamed Al Bayaa -
+# Ayman Kandil -  S00038525
+# Ashwaq Bonasi - S00043387
+# Mohammad Al Bayaa - S00050746
 # Mohanned Odeh - S00045606
  
 
@@ -42,6 +42,8 @@ app.config["DEBUG"]=True
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.anonymous_user = Anonymous
+
 
 @login_manager.user_loader
 def load_user(user_id):

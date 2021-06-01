@@ -1,3 +1,5 @@
+{% set nav = [ { "name": "Home", "href": "/", "access_roles": [1, 2, 3] }, { "name": "Home", "href": "/", "access_roles": [2] }, { "name": "Home", "href": "/", "access_roles": [3] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [1] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [2] }, { "name": "Farms Catalogue", "href": "/farms", "access_roles": [3] }, { "name": "Farms Products", "href": "/products", "access_roles": [1] }, { "name": "Farms Products", "href": "/products", "access_roles": [2] }, { "name": "Farms Products", "href": "/products", "access_roles": [3] },  { "name": "Register/Sign-In", "href": "/register", "access_roles": [3] }, { "name": "Farmer's Portal", "href": "/farmportal", "access_roles": [2] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [1] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [2] }, { "name": "Useful Links", "href": "/usefullinks", "access_roles": [3] }, { "name": "User Profile", "href": "/userprofile", "access_roles": [1] }, { "name": "User Profile", "href": "/userprofile", "access_roles": [2] }, { "name": "About Us", "href": "/aboutus", "access_roles": [1] }, { "name": "About Us", "href": "/aboutus", "access_roles": [2] }, { "name": "About Us", "href": "/aboutus", "access_roles": [3] }, { "name": "Admin Portal", "href": "/ManageUser", "access_roles": [1] }] %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,11 @@
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-
 </head>
 
 
 <!-- Navigation -->
+
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{url_for('static', filename='logo3.png')}}"></a>
@@ -36,51 +38,39 @@
 								  <input type="search"  name="searchtext" id="form1" class="form-control" />
 								  <label class="form-label" for="form1">Search</label>
 								</div>
-								<div><input class="form-check-input" type="checkbox" name="productsearch" value="Mango" id="item-check3">
-									<label class="form-check-label" for="item-check3"> Search Products </label></div>
-								<div><input class="form-check-input" type="checkbox" name="farmsearch" value="Mango" id="item-check3">
-									<label class="form-check-label" for="item-check3"> Search Farms </label></div>
-								<button type="submit" class="btn btn-secondary">
-								  <i class="fas fa-search"></i>
-								</button>
+								
 							  </div>
+							<div style= "text-align: center;"><input class="form-check-input" type="checkbox" name="productsearch" value="Mango" id="item-check3">
+								<label class="form-check-label" for="item-check3"> Search Products </label></div>
+						
+							<div style= "text-align: center;"><input class="form-check-input" type="checkbox" name="farmsearch" value="Mango2" id="item-check4">
+								<label class="form-check-label" for="item-check4"> Search Farms </label></div>
+							<button type="submit" class="btn btn-secondary">
+							  <i class="fas fa-search"></i>
+							</button>
 						</div>
 						</form>
-					  </div>
-				</li>
-				{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for message in messages %}
-	<div class="{{ message[0] }}">
-		{{ message[1] }}
+				  </div>
+			</li>
+			{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for message in messages %}
+<div class="{{ message[0] }}">
+    {{ message[1] }}
+</div>
+		</ul>
+{% endfor %} {% endif %} {% endwith %}
+		<ul class="navbar-nav ml-auto">
+			{% for item in nav %} {% if current_user.allowed(item.access_roles) %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{item.href}}">{{item.name}}</a>
+			</li>
+			{% endif %} {% endfor %}
+		</ul>
+		
 	</div>
-	{% endfor %} {% endif %} {% endwith %}
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('index') }}">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('farms.all_farms_view')}}">Farms Catalogue</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('products.all_products_view') }}">Farms Products</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('auth.register_post') }}">Register/Sign-In</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('farmportal') }}">Farmer's Portal</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('usefullinks') }}">Useful Links</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Contact Us</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('aboutus') }}">About Us</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	</nav>
+	
+</div>
+</nav>
+
 	
 
 <!--- Who are we? -->
@@ -122,7 +112,7 @@
 	<div class="row padding">
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top" src="img/woman.png">
+				<img class="card-img-top" src="{{url_for('static', filename='Ashwaq.png')}}">
 				<div class="card-body">
 					<h4 class="card-title">Ashwaq Bonasi</h4>
 					<p class="card-text"> About Ashwaq...Worked mainly on the front-end using HTML, CSS and BOOTSTRAP,  in order to ensure easy portablity on all devices</p>
@@ -132,7 +122,7 @@
 
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top" src="img/man.png">
+				<img class="card-img-top" src="{{url_for('static', filename='Ayman.png')}}">
 				<div class="card-body">
 					<h4 class="card-title">Ayman Kandil</h4>
 					<p class="card-text"> About Ayman...Worked mainly on the back-end using Python Language in addition to the Flask framework and SQLite3 to handle the databases</p>
@@ -142,7 +132,7 @@
 		
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top" src="img/man.png">
+				<img class="card-img-top" src="{{url_for('static', filename='Mohamed.png')}}">
 				<div class="card-body">
 					<h4 class="card-title">Mohamed Albyaa</h4>
 					<p class="card-text"> About Mohamed...Worked mainly on the front-end using HTML, CSS and BOOTSTRAP, in order to ensure easy portablity on all devices</p>
@@ -152,10 +142,10 @@
 
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top" src="img/man.png">
+				<img class="card-img-top" src="{{url_for('static', filename='Mohannad.png')}}">
 				<div class="card-body">
-					<h4 class="card-title">Mohannad Odeh</h4>
-					<p class="card-text"> About Mohannad...Worked mainly on the back-end using Python Language in addition to the Flask framework and SQLite3 to handle the databases</p>
+					<h4 class="card-title">Mohanned Odeh</h4>
+					<p class="card-text"> About Mohanned...Worked mainly on the back-end using Python Language in addition to the Flask framework and SQLite3 to handle the databases</p>
 				</div>
 			</div>
 		</div>
@@ -171,7 +161,7 @@
 			<hr class="light">
 			<a href="{{ url_for('farmer.farmer_view') }}"><p>User Profile</p></a>
 			<a href="{{ url_for('farms.all_farms_view')}}"><p>Farms</p></a>
-			<P>Products</P>
+			<a href="{{ url_for('products.all_products_view')}}"><P>Products</P></a>
 		</div>
 		<div class="col-md-4">
 			<hr class="light">
@@ -186,7 +176,7 @@
 			<h5>Company</h5>
 			<hr class="light">
 			<a href= "{{ url_for('aboutus') }}"><p>About Us</p></a>
-			<p>Contact Us</p>
+			<a href= "{{ url_for('usefullinks') }}"><p>Useful Links</p></a>
 		</div>
 		<div class="col-12">
 			<hr class="light-100">
