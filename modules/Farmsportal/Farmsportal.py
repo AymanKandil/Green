@@ -54,14 +54,10 @@ def farmer_view():
         productinfo.append(db.get_productinfo(farmidint[count2]))              #Gets the product info based on which farm id is linked to the product id
         count2 += 1 
 
-    print(productinfo)
-
     finalproductinfo = []
     for x in productinfo:
         for b in x:
             finalproductinfo.append(b)                      #Appends the retrieved information into an array instead of a tuple
-
-    print(finalproductinfo)
 
     return render_template("farm-portal.html", farminfo = usersfarminfo, names=farmnames, productnames = productnames, productinfo = finalproductinfo)
 

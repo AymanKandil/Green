@@ -84,9 +84,9 @@ class Anonymous(AnonymousUserMixin):
     def allowed(self, access_level):
 
         if self.access == access_level[0]:
-            print(access_level[0])
+           
             return True
         else:
-            print(access_level[0])
+         
             return False
         

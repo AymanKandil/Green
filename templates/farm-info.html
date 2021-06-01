@@ -75,7 +75,7 @@
 <div class="farm container-fluid padding">
     <div class="row padding">
         <div class="col-lg-6">
-            <img src="{{ url_for('download_file', filename='farm-'+farm[0]|string+'.jpeg') }}" class="img-fluid">
+            <img src="{{ url_for('download_file', filename='farm-'+farm[0]|string+'.jpg') }}" class="img-fluid">
         </div>
         <div class="col-md-12 col-lg-6">
             <h2 id=farm-info-name>{{ farm [1]}}</h2>
@@ -113,7 +113,7 @@
 			<h5>Company</h5>
 			<hr class="light">
 			<a href= "{{ url_for('aboutus') }}"><p>About Us</p></a>
-			<p>Contact Us</p>
+			<a href= "{{ url_for('usefullinks') }}"><p>Useful Links</p></a>
 		</div>
 		<div class="col-12">
 			<hr class="light-100">

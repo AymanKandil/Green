@@ -223,7 +223,7 @@
             {% for x in farm%}
             <div class="col-sm-3 offset-1">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ url_for('download_file', filename='farm-'+x[0]|string+'.jpeg') }}" alt="Strawberries">
+                    <img class="card-img-top" src="{{ url_for('download_file', filename='farm-'+x[0]|string+'.jpg') }}" alt="Strawberries">
                     <div class="card-body">
                       <h5 class="card-title">{{ x[1]}}</h5>
                       <a href="/farms/{{ x[0] }}" type="button" class="btn btn-outline-secondary btn-lg">View Item</a>

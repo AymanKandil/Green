@@ -31,11 +31,8 @@ def product_filter():
     product_array = []
     if request.method== 'POST':
         product_array = request.form.getlist('filter')
-    print(product_array)
     product_info = []
     for x in product_array:
         product_info.append(db.select_productsfilter(x))            #Filter that takes all selected productname and retrieves info to display
 
-    print(product_info)
-    print(product_info[0][0])
     return render_template('filterproduct.html', products=product_info)

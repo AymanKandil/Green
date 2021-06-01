@@ -44,7 +44,7 @@ def farmfilter():
         product_array = request.form.getlist('filter')          #Gets the selected checkboxes in filters
     productname=[]  
     for x in product_array:                                     #Using the selected checkboxes a for loop goes through each and gets their id
-        print(x)
+        
         productname.append(db.get_productidbyname(x))
     productname2= []
     count=0
@@ -53,7 +53,6 @@ def farmfilter():
             productname2.append(productname[count][0])              #Nested for loop to get  the id as an array of integars
             count += 1
     farmid=[]
-    print(productname2[0][0])
     count2=0;
     for y in productname2:
         farmid.append(db.select_farmidbyproductid(productname2[count2][0]))                     #For loop to get the farm id from the product id using the database query
@@ -70,9 +69,6 @@ def farmfilter():
     for x in finalfarmid:
         farminfo.append(db.get_farminfo(finalfarmid[count3][0]))                    #Gets the farm data from the farm ids we set in the previous for loops.
         count3+=1
-
-    print(farminfo)
-   
     return render_template("filterfarms.html", farms=farminfo)
 
 @farms.route("/searching", methods=['POST'])
@@ -83,15 +79,12 @@ def indexsearch():
         if request.form.get("productsearch"):                                           #Checks which checkbox is selected to narrow search
             searchtext = request.form.get('searchtext')                         
             pid = db.get_productidbyname(searchtext)                                    #Finds the productid based on name inputted in checkbox
-            print(pid)
             pid = pid[0][0]
             product_data=db.select_product(pid)                                         #Selects product based on product id
-            print(product_data)
             return render_template("testsearch2.html", products=product_data)
         elif request.form.get("farmsearch"):                                            #Checks if its the farm checkbox that is selected
             searchtext = request.form.get('searchtext')                                 #Takes the text in search box and stores it
             fid = db.get_farmidbyname(searchtext)                                       #Finds farm id based on name
-            print(fid)
             fid = fid[0][0]
             farm_data=db.select_farm(fid)                                               #Retrieves farm data to display
             return render_template("testsearch.html", farm=farm_data)
